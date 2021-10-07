@@ -14,9 +14,9 @@
     <div class="container-fluid mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        Loan Calculator
+                <div class="card shadow">
+                    <div class="card-header pt-3">
+                        <h5>Loan Calculator</h5>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
@@ -68,13 +68,14 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
     <script>
+
         $type = $('#type')
         $amount = $('#amount')
         $principal = $('#principal')
         $interest = $('#interest')
         $weeklyDue = $('#weeklyDue')
 
-        $type.on('change', function() {
+        $type.on('change', function () {
             calculateLoan()
         })
 
@@ -112,7 +113,7 @@
         function getInterest() {
             switch ($type.val()) {
                 case '1':
-                    return (parseInt($amount.val()) * 0.4) * 6 / 24;
+                    return parseInt($amount.val()) * 0.04 * 6 / 24;
                 case '2':
                     return parseInt($amount.val()) * 0.03;
                 default:
@@ -123,6 +124,7 @@
         function getWeeklyDue() {
             return parseFloat($principal.val()) + parseFloat($interest.val())
         }
+
     </script>
 
 </body>
