@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>LoanCalculator</title>
+    <title>Business Loan Calculator</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -19,17 +19,6 @@
                         <h5>Loan Calculator</h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label for="loanType" class="col-sm-4 col-form-label">Type</label>
-                            <div class="col-sm-8">
-
-                                <select id="type" class="form-control">
-                                    <option value="1" selected>Business</option>
-                                    <option value="2">Pensioner</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label for="amount" class="col-sm-4 col-form-label">Amount</label>
                             <div class="col-sm-8">
@@ -76,15 +65,6 @@
         $due = $('#due')
         $dueLabel = $('#dueLabel')
 
-        $type.on('change', function () {
-            calculateLoan()
-            if ($(this).val() === '1') {
-                $dueLabel.text('Weekly Due')
-            }else {
-                $dueLabel.text('Monthly Due')
-            }
-        })
-
         $amount.on('keyup', function () {
             calculateLoan()
         })
@@ -100,29 +80,16 @@
         }
 
         function getPrincipal() {
-            switch ($type.val()) {
-                case '1':
-                    return parseInt($amount.val()) / 24;
-                case '2':
-                    return parseInt($amount.val()) / 3;
-                default:
-                    return 0
-            }
+
+            return parseInt($amount.val()) / 24;
         }
 
         function getInterest() {
-            switch ($type.val()) {
-                case '1':
-                    return parseInt($amount.val()) * 0.04 * 6 / 24;
-                case '2':
-                    return parseInt($amount.val()) * 0.03;
-                default:
-                    return 0
-            }
+            return parseInt($amount.val()) * 0.04 * 6 / 24;
         }
 
         function getDue() {
-            return parseFloat($principal.val()) + parseFloat($interest.val())
+            return parseFloat($principal.val()) + parseFloat($interest.val()) + 30
         }
 
     </script>
